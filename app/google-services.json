@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "562678136912",
+    "firebase_url": "https://gincapp-2f696.firebaseio.com",
+    "project_id": "gincapp-2f696",
+    "storage_bucket": "gincapp-2f696.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562678136912:android:b08a3d6a591dded3",
+        "android_client_info": {
+          "package_name": "br.com.naosai.breno.gincapp_010"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562678136912-pjvim5vjprts7rsavv7lqr30n6l95vu3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.naosai.breno.gincapp_010",
+            "certificate_hash": "1a069ae0116009ae680ebf8e3bc27c7daae5be83"
+          }
+        },
+        {
+          "client_id": "562678136912-c57jimi238pangtmrdqvi0fio01usugi.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "562678136912-c57jimi238pangtmrdqvi0fio01usugi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxtnxRhvaCviCIvJCfo1zey0LIwsi-Jzs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562678136912-c57jimi238pangtmrdqvi0fio01usugi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
