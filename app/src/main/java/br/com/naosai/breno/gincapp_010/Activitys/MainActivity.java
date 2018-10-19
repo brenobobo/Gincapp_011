@@ -200,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("chave", gincana.getChaveamento());
                     intent.putExtra("nome", gincana.getNome());
                     intent.putExtra("id", gincana.getId());
-
                     startActivity(intent);
                 }
 
