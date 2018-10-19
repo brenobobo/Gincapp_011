@@ -182,22 +182,29 @@ public class MainActivity extends AppCompatActivity {
         listViewGincanas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-
-
-
-                Intent intent = new Intent(MainActivity.this, GincanaActivity.class);
-
                 Gincana gincana = gincanas.get(position);
 
+                if (gincana.getChaveamento() =="semifinal"){
+
+                    Intent intent = new Intent(MainActivity.this, SemiFinalActivity.class);
+
+                    intent.putExtra("chave", gincana.getChaveamento());
+                    intent.putExtra("nome", gincana.getNome());
+                    intent.putExtra("id", gincana.getId());
+
+                    startActivity(intent);
 
 
+                }else{
+                    Intent intent = new Intent(MainActivity.this, GincanaActivity.class);
+                    intent.putExtra("chave", gincana.getChaveamento());
+                    intent.putExtra("nome", gincana.getNome());
+                    intent.putExtra("id", gincana.getId());
 
-                intent.putExtra("nome", gincana.getNome());
-                intent.putExtra("id", gincana.getId());
-                String chaveamento = gincana.getChaveamento();
+                    startActivity(intent);
+                }
 
-                startActivity(intent);
+
             }
         });
 

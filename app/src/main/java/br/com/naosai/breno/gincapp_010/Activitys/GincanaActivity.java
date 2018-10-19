@@ -67,7 +67,7 @@ public class GincanaActivity extends AppCompatActivity {
         final Bundle extra = getIntent().getExtras();
 
         if (extra != null) {
-            nomeDaGincana = extra.getString("nome");
+            nomeDaGincana = extra.getString("chave");
 
         }
 

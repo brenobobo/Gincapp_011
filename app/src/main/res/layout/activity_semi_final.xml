@@ -38,15 +38,15 @@
         android:text="Semi-Final"
         android:textColor="@color/textColorToLight"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/campo2"
-        app:layout_constraintEnd_toEndOf="@+id/campo3"
+        app:layout_constraintBottom_toBottomOf="@+id/campo3"
+        app:layout_constraintEnd_toEndOf="@+id/campo2"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/campo3"
-        app:layout_constraintTop_toTopOf="@+id/campo2"
+        app:layout_constraintStart_toStartOf="@+id/campo2"
+        app:layout_constraintTop_toTopOf="@+id/campo3"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/campo3"
+        android:id="@+id/campo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/campo1" />
 
     <TextView
-        android:id="@+id/campo2"
+        android:id="@+id/campo3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
@@ -77,8 +77,8 @@
         android:text="Semi-Final"
         android:textColor="@color/textColorToLight"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/campo2"
-        app:layout_constraintTop_toBottomOf="@+id/campo2" />
+        app:layout_constraintStart_toStartOf="@+id/campo3"
+        app:layout_constraintTop_toBottomOf="@+id/campo3" />
 
     <Button
         android:id="@+id/button_addEquipe"

@@ -12,10 +12,12 @@
     <ListView
         android:id="@+id/listViewGincanasId"
         android:layout_width="match_parent"
-        android:layout_height="511dp"
+        android:layout_height="518dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton_addGincana"
