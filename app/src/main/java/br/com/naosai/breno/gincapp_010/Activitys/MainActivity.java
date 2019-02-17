@@ -93,7 +93,10 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(intent);
 
-               /* AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+               /*
+              ATINGO JEITO DE CRIAR COMPETIÇÕES
+
+               AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                 alertDialog.setTitle("Nova Gincana");
                 alertDialog.setMessage("Qual o nome da Gincana?");
                 alertDialog.setCancelable(true);
@@ -184,7 +187,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Gincana gincana = gincanas.get(position);
 
-                if (gincana.getChaveamento() =="semifinal"){
+                String valor = gincana.getChaveamento();
+
+                if (valor.equals("Semi-Final")){
 
                     Intent intent = new Intent(MainActivity.this, SemiFinalActivity.class);
 
@@ -196,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }else{
+
                     Intent intent = new Intent(MainActivity.this, GincanaActivity.class);
                     intent.putExtra("chave", gincana.getChaveamento());
                     intent.putExtra("nome", gincana.getNome());

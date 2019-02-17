@@ -44,8 +44,10 @@ public class ConfiguracaoEsportesActivity extends AppCompatActivity {
                 String nomeDaGincana = editText_nomeGincana.getText().toString();
 
                 int idRadioEscolhido = grupoChaveamento.getCheckedRadioButtonId();
+
+
                 if (nomeDaGincana == null){
-                    Toast.makeText(ConfiguracaoEsportesActivity.this, "Digite um nome.", Toast.LENGTH_SHORT);
+                    Toast.makeText(ConfiguracaoEsportesActivity.this, "Digite um nome.", Toast.LENGTH_SHORT).show();
                 }else {
                     if (idRadioEscolhido > 0) {
                         radioEscolhido = findViewById(idRadioEscolhido);

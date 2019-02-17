@@ -7,7 +7,7 @@ public class Equipe {
     private String idGincana;
     private String nome;
     private String pontos;
-    private String campo;
+    private String lugar;
 
 
 
@@ -40,6 +40,14 @@ public class Equipe {
         return idGincana;
     }
 
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
     public void setIdGincana(String idGincana) {
         this.idGincana = idGincana;
     }
@@ -48,5 +56,7 @@ public class Equipe {
     public String toString() {
         return nome;
     }
+
+
 }
 

@@ -39,7 +39,7 @@ public class SemiFinalActivity extends AppCompatActivity {
             }
         });
 
-        final String posicao = extra.getString("posicao");
+        final String posicao = extra.getString("lugar");
         String nomeDaEquipe = extra.getString("nome");
 
         if (posicao == "1"){

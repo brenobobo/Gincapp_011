@@ -15,8 +15,8 @@
         android:id="@+id/textView5"
         android:layout_width="367dp"
         android:layout_height="58dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="336dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="384dp"
         android:text="Qual tipo chaveamento você deseja?"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="24sp"
@@ -42,6 +42,7 @@
         android:id="@+id/textView4"
         android:layout_width="@dimen/pradrao_campo_width"
         android:layout_height="@dimen/padrao_caompo_height"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="444dp"
         android:text="Nome da Gincana:"
@@ -50,14 +51,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828" />
+        app:layout_constraintVertical_bias="0.437" />
 
     <EditText
         android:id="@+id/editText_nomeGincana"
         android:layout_width="@dimen/pradrao_campo_width"
         android:layout_height="@dimen/padrao_caompo_height"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginEnd="180dp"
         android:layout_marginBottom="364dp"
         android:background="@color/colorPrimaryLight"
         android:ems="10"
@@ -65,37 +67,34 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.184" />
 
     <RadioGroup
         android:id="@+id/radioGroupChaveamento"
         android:layout_width="376dp"
         android:layout_height="209dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="136dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent">
-
-        <RadioButton
-            android:id="@+id/radioButton_qf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Quartas de finais" />
 
         <RadioButton
             android:id="@+id/radioButton2_sf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="semifinal" />
+            android:text="Semi-Final" />
 
         <RadioButton
             android:id="@+id/radioButton3_pc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Pontos corridos" />
+            android:text="Final" />
     </RadioGroup>
 
     <Button
