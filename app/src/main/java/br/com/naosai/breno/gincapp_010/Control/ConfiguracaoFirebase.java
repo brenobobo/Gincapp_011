@@ -24,4 +24,9 @@ public class ConfiguracaoFirebase {
         }
         return firebaseAuth;
     }
+
+
+
+
+
 }

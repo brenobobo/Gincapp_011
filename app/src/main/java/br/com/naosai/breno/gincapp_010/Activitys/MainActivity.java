@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -50,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private Gincana gincana;
     Gincana gincanaSelecionada;
 
-
-    private DatabaseReference databaseReference;
+    // Databasereference em vez do query. Pois eu queria mudar a ordem da listagem e com o databasereference não achei um jeito prático
+    private Query databaseReference;
     private ValueEventListener valueEventListenerGincana;
 
 
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         listViewGincanas.setAdapter(adapter);
 
-        databaseReference = ConfiguracaoFirebase.getFirebase().child("Gincana");
+        databaseReference = ConfiguracaoFirebase.getFirebase().child("Gincana").orderByChild("nome");
 
         //Listener para recuperar gincanas
         valueEventListenerGincana = new ValueEventListener() {

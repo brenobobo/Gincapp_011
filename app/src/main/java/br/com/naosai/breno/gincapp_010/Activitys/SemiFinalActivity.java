@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.com.naosai.breno.gincapp_010.R;
 
@@ -16,6 +17,7 @@ public class SemiFinalActivity extends AppCompatActivity {
     private TextView campo2;
     private TextView campo3;
     private TextView campo4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +32,33 @@ public class SemiFinalActivity extends AppCompatActivity {
         campo3 = findViewById(R.id.campo3);
         campo4 = findViewById(R.id.campo4);
 
+
+
+
+
+
+
+
         botaoAdcionarEquipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SemiFinalActivity.this, AdicionarEquipeActivity.class);
 
-                startActivity(intent);
+                if (extra != null) {
+                    String idGincana = extra.getString("id");
+                    intent.putExtra("id", idGincana);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(SemiFinalActivity.this,"ERROR: Necessita do id da gincana  idGincana",Toast.LENGTH_LONG).show();
+                }
+
             }
         });
+
+
+
+
+
 
         final String posicao = extra.getString("lugar");
         String nomeDaEquipe = extra.getString("nome");
@@ -65,3 +86,4 @@ public class SemiFinalActivity extends AppCompatActivity {
 
 
 }
+

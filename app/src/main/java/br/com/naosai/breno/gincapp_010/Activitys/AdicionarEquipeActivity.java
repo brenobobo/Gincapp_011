@@ -24,7 +24,7 @@ public class AdicionarEquipeActivity extends AppCompatActivity {
     private RadioGroup grupoPosicao;
     private RadioButton radioSelecionado;
 
-    ControlEquipe controlEquipe;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class AdicionarEquipeActivity extends AppCompatActivity {
                 if (campoNomeEquipe != null){
 
                     Equipe equipe = new Equipe();
+                    ControlEquipe controlEquipe = new ControlEquipe();
 
                     int grupo = grupoPosicao.getCheckedRadioButtonId();
 
@@ -49,8 +50,10 @@ public class AdicionarEquipeActivity extends AppCompatActivity {
                         radioSelecionado = findViewById(grupo);
                         String lugarNaTela = radioSelecionado.getText().toString();
 
-
+                        final Bundle extra = getIntent().getExtras();
+                        String idGincana = extra.getString("id");
                         equipe.setId(UUID.randomUUID().toString());
+                        equipe.setIdGincana(idGincana);
                         equipe.setNome(nome);
                         equipe.setLugar(lugarNaTela);
                         controlEquipe.salvarEquipe(equipe);
