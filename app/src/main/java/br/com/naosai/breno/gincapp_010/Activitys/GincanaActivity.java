@@ -1,9 +1,15 @@
 package br.com.naosai.breno.gincapp_010.Activitys;
 
 import android.content.DialogInterface;
+import android.graphics.Path;
+import android.icu.text.RelativeDateTimeFormatter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,19 +18,27 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.UUID;
 
 import br.com.naosai.breno.gincapp_010.Adapter.EquipeAdapter;
 import br.com.naosai.breno.gincapp_010.Adapter.GincanaAdapter;
+import br.com.naosai.breno.gincapp_010.Control.Base64Custom;
 import br.com.naosai.breno.gincapp_010.Control.ConfiguracaoFirebase;
 import br.com.naosai.breno.gincapp_010.Control.ControlEquipe;
+import br.com.naosai.breno.gincapp_010.Control.ControlUsuario;
 import br.com.naosai.breno.gincapp_010.Entidades.Equipe;
 import br.com.naosai.breno.gincapp_010.Entidades.Gincana;
 import br.com.naosai.breno.gincapp_010.R;
@@ -35,14 +49,17 @@ public class GincanaActivity extends AppCompatActivity {
 
     private String nomeDaGincana;
     private Button botaoCadastrarTime;
+    private android.support.v7.widget.Toolbar toolbar;
 
     private ListView listaEquipes;
     private ArrayAdapter adapter;
     private ArrayList<Equipe> equipes;
     private Equipe equipe;
+    private String identificadorUsuario;
 
 
-    private DatabaseReference databaseReference;
+    private DatabaseReference firebase;
+    private Query databaseReference;
     private ValueEventListener valueEventListenerEquipe;
 
     @Override
@@ -71,11 +88,15 @@ public class GincanaActivity extends AppCompatActivity {
 
         }
 
+//toolbar
+        toolbar = findViewById(R.id.toolbar_main);
+        toolbar.setTitle(nomeDaGincana);
+        setSupportActionBar(toolbar);
 
 
-        textViewNomeDaGincana = findViewById(R.id.textViewNomeDaGincanaId);
 
-        textViewNomeDaGincana.setText(nomeDaGincana);
+
+
 
         botaoCadastrarTime = findViewById(R.id.bt_cadastrarTime);
 
@@ -127,12 +148,12 @@ public class GincanaActivity extends AppCompatActivity {
 
         listaEquipes = findViewById(R.id.listaTimesId);
         adapter = new EquipeAdapter(GincanaActivity.this, equipes);
-
-
         listaEquipes.setAdapter(adapter);
 
+
+
         final String idGincana = extra.getString("id");
-        databaseReference = ConfiguracaoFirebase.getFirebase().child("Equipe").child(idGincana);
+        databaseReference = ConfiguracaoFirebase.getFirebase().child("Equipe").child(idGincana).orderByChild("pontos");
 
         //Listener para recuperar gincanas
         valueEventListenerEquipe = new ValueEventListener() {
@@ -146,7 +167,12 @@ public class GincanaActivity extends AppCompatActivity {
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
 
                     Equipe equipe = dados.getValue(Equipe.class);
+
                     equipes.add(equipe);
+
+
+
+
                 }
 
                 // atualizacao da mudança
@@ -226,5 +252,77 @@ public class GincanaActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_competicao, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.convidarId:
+                convidarUsuario();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    public void convidarUsuario(){
+        android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(GincanaActivity.this);
+        alertDialog.setTitle("Digite o email do convidado");
+        final EditText emailConvidado = new EditText(GincanaActivity.this);
+        alertDialog.setView(emailConvidado);
+        alertDialog.setPositiveButton("Convidar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               String emailUsuario = emailConvidado.getText().toString();
+
+                if (emailUsuario.isEmpty()){
+                    Toast.makeText(GincanaActivity.this, "Preencha uma e-mail", Toast.LENGTH_LONG).show();
+                }else {
+                    //Verificar se o usuario está cadastrado no app
+                    identificadorUsuario = Base64Custom.codificarBase64(emailUsuario);
+                    firebase = ConfiguracaoFirebase.getFirebase().child("Usuario").child(identificadorUsuario);
+
+                    firebase.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.getValue() != null ){
+
+                                firebase = ConfiguracaoFirebase.getFirebase();
+
+
+
+
+                            }else{
+                                Toast.makeText(GincanaActivity.this, "Não existe esse email cadastrado", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+            }
+        });
+
+        alertDialog.show();
+    }
+
 }

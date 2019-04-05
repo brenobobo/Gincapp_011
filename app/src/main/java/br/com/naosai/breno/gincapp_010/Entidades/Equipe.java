@@ -1,5 +1,7 @@
 package br.com.naosai.breno.gincapp_010.Entidades;
 
+import android.support.annotation.NonNull;
+
 public class Equipe {
 
 
@@ -56,6 +58,7 @@ public class Equipe {
     public String toString() {
         return nome;
     }
+
 
 
 }

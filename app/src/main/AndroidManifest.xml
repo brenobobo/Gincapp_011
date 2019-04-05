@@ -19,7 +19,7 @@
         <activity android:name=".Activitys.GincanaActivity" />
         <activity android:name=".Activitys.MainActivity" />
         <activity android:name=".Activitys.CadastroUsuarioActivity" />
-        <activity android:name=".Activitys.ConfiguracaoEsportesActivity" />
+        <activity android:name=".Activitys.CadastroCompeticaoActivity" />
         <activity android:name=".Activitys.SemiFinalActivity" />
         <activity android:name=".Activitys.AdicionarEquipeActivity"></activity>
     </application>

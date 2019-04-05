@@ -3,6 +3,7 @@ package br.com.naosai.breno.gincapp_010.Entidades;
 public class Gincana {
 
     private String id;
+    private String idUsuario;
     private String nome;
     private String chaveamento;
 
@@ -11,6 +12,14 @@ public class Gincana {
     public Gincana() {
 
 
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getChaveamento() {

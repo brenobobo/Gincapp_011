@@ -10,20 +10,27 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.UUID;
 
+import br.com.naosai.breno.gincapp_010.Control.Base64Custom;
+import br.com.naosai.breno.gincapp_010.Control.ConfiguracaoFirebase;
 import br.com.naosai.breno.gincapp_010.Control.ControlGincana;
+import br.com.naosai.breno.gincapp_010.Control.ControlUsuario;
 import br.com.naosai.breno.gincapp_010.Entidades.Gincana;
 import br.com.naosai.breno.gincapp_010.R;
 
 
-public class ConfiguracaoEsportesActivity extends AppCompatActivity {
+public class CadastroCompeticaoActivity extends AppCompatActivity {
 
     private android.support.v7.widget.Toolbar toolbar;
     private Button botaoPronto;
     private EditText editText_nomeGincana;
     private RadioGroup grupoChaveamento;
     private RadioButton radioEscolhido;
+
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,27 +54,31 @@ public class ConfiguracaoEsportesActivity extends AppCompatActivity {
 
 
                 if (nomeDaGincana == null){
-                    Toast.makeText(ConfiguracaoEsportesActivity.this, "Digite um nome.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CadastroCompeticaoActivity.this, "Digite um nome.", Toast.LENGTH_SHORT).show();
                 }else {
                     if (idRadioEscolhido > 0) {
                         radioEscolhido = findViewById(idRadioEscolhido);
                         final String rEscolhido = radioEscolhido.getText().toString();
+                        ControlUsuario controlUsuario = new ControlUsuario();
+
+                        String email = controlUsuario.recoverEmailBase64();
 
 
                         ControlGincana controlGincana = new ControlGincana();
                         Gincana gincana = new Gincana();
                         gincana.setId(UUID.randomUUID().toString());
+                        gincana.setIdUsuario(email);
                         gincana.setNome(nomeDaGincana);
                         gincana.setChaveamento(rEscolhido);
                         controlGincana.salvarGincana(gincana);
 
 
-                        Intent intent = new Intent(ConfiguracaoEsportesActivity.this, MainActivity.class);
+                        Intent intent = new Intent(CadastroCompeticaoActivity.this, MainActivity.class);
                         startActivity(intent);
 
                         finish();
                     } else {
-                        Toast.makeText(ConfiguracaoEsportesActivity.this, "Marque uma das opções.", Toast.LENGTH_SHORT);
+                        Toast.makeText(CadastroCompeticaoActivity.this, "Marque uma das opções.", Toast.LENGTH_SHORT);
                     }
 
                 }

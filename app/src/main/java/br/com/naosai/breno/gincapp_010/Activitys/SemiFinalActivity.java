@@ -8,15 +8,51 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import br.com.naosai.breno.gincapp_010.Control.ConfiguracaoFirebase;
+import br.com.naosai.breno.gincapp_010.Entidades.Equipe;
+import br.com.naosai.breno.gincapp_010.Entidades.Gincana;
+import br.com.naosai.breno.gincapp_010.Entidades.Partida;
 import br.com.naosai.breno.gincapp_010.R;
 
 public class SemiFinalActivity extends AppCompatActivity {
 
     private Button botaoAdcionarEquipe;
+    private Button botaoAddPontos;
     private TextView campo1;
     private TextView campo2;
     private TextView campo3;
     private TextView campo4;
+
+    private String idDaGincana;
+
+    private ArrayList<Equipe> equipes;
+
+    private Query databaseReference;
+    private ValueEventListener valueEventListenerEquipe;
+    private FirebaseUser firebaseAuth;
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        databaseReference.addValueEventListener(valueEventListenerEquipe);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        databaseReference.removeEventListener(valueEventListenerEquipe);
+
+    }
 
 
     @Override
@@ -26,7 +62,13 @@ public class SemiFinalActivity extends AppCompatActivity {
 
         final Bundle extra = getIntent().getExtras();
 
+        if (extra != null) {
+          idDaGincana = extra.getString("chave");
+
+        }
+
         botaoAdcionarEquipe = findViewById(R.id.button_addEquipe);
+        botaoAddPontos = findViewById(R.id.botaoAddPontosId);
         campo1 = findViewById(R.id.campo1);
         campo2 = findViewById(R.id.campo2);
         campo3 = findViewById(R.id.campo3);
@@ -54,6 +96,43 @@ public class SemiFinalActivity extends AppCompatActivity {
 
             }
         });
+
+        botaoAddPontos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth().getCurrentUser();
+
+                String email = firebaseAuth.getEmail();
+
+                campo1.setText(email);
+
+            }
+        });
+
+        databaseReference = ConfiguracaoFirebase.getFirebase().child("Equipe").child(idDaGincana).orderByChild("lugar").equalTo("Equipe1");
+
+        valueEventListenerEquipe = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Equipe equipe = dataSnapshot.getValue(Equipe.class);
+
+                //String lugarDaEquipe = equipe.getLugar();
+
+                //campo1.setText(lugarDaEquipe);
+
+
+            }
+
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+
 
 
 
