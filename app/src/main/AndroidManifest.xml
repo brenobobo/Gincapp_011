@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activitys.TesteActivity"></activity>
         <activity android:name=".Activitys.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +22,7 @@
         <activity android:name=".Activitys.CadastroUsuarioActivity" />
         <activity android:name=".Activitys.CadastroCompeticaoActivity" />
         <activity android:name=".Activitys.SemiFinalActivity" />
-        <activity android:name=".Activitys.AdicionarEquipeActivity"></activity>
+        <activity android:name=".Activitys.AdicionarEquipeActivity" />
     </application>
 
 </manifest>

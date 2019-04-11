@@ -1,12 +1,8 @@
 package br.com.naosai.breno.gincapp_010.Activitys;
 
 import android.content.DialogInterface;
-import android.graphics.Path;
-import android.icu.text.RelativeDateTimeFormatter;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,20 +22,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.UUID;
 
 import br.com.naosai.breno.gincapp_010.Adapter.EquipeAdapter;
-import br.com.naosai.breno.gincapp_010.Adapter.GincanaAdapter;
 import br.com.naosai.breno.gincapp_010.Control.Base64Custom;
 import br.com.naosai.breno.gincapp_010.Control.ConfiguracaoFirebase;
 import br.com.naosai.breno.gincapp_010.Control.ControlEquipe;
-import br.com.naosai.breno.gincapp_010.Control.ControlUsuario;
+import br.com.naosai.breno.gincapp_010.Entidades.ConvidadoGincana;
 import br.com.naosai.breno.gincapp_010.Entidades.Equipe;
-import br.com.naosai.breno.gincapp_010.Entidades.Gincana;
 import br.com.naosai.breno.gincapp_010.R;
 
 public class GincanaActivity extends AppCompatActivity {
@@ -48,6 +37,8 @@ public class GincanaActivity extends AppCompatActivity {
     private TextView textViewNomeDaGincana;
 
     private String nomeDaGincana;
+    private String idDaGincana;
+    private String chaveamento;
     private Button botaoCadastrarTime;
     private android.support.v7.widget.Toolbar toolbar;
 
@@ -84,7 +75,10 @@ public class GincanaActivity extends AppCompatActivity {
         final Bundle extra = getIntent().getExtras();
 
         if (extra != null) {
-            nomeDaGincana = extra.getString("chave");
+            nomeDaGincana = extra.getString("nome");
+            idDaGincana = extra.getString("id");
+            chaveamento = extra.getString("chave");
+
 
         }
 
@@ -282,18 +276,18 @@ public class GincanaActivity extends AppCompatActivity {
     public void convidarUsuario(){
         android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(GincanaActivity.this);
         alertDialog.setTitle("Digite o email do convidado");
-        final EditText emailConvidado = new EditText(GincanaActivity.this);
-        alertDialog.setView(emailConvidado);
+        final EditText emailUsuario = new EditText(GincanaActivity.this);
+        alertDialog.setView(emailUsuario);
         alertDialog.setPositiveButton("Convidar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-               String emailUsuario = emailConvidado.getText().toString();
+               final String emailConvidado = emailUsuario.getText().toString();
 
-                if (emailUsuario.isEmpty()){
+                if (emailConvidado.isEmpty()){
                     Toast.makeText(GincanaActivity.this, "Preencha uma e-mail", Toast.LENGTH_LONG).show();
                 }else {
                     //Verificar se o usuario está cadastrado no app
-                    identificadorUsuario = Base64Custom.codificarBase64(emailUsuario);
+                    identificadorUsuario = Base64Custom.codificarBase64(emailConvidado);
                     firebase = ConfiguracaoFirebase.getFirebase().child("Usuario").child(identificadorUsuario);
 
                     firebase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -301,7 +295,13 @@ public class GincanaActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.getValue() != null ){
 
-                                firebase = ConfiguracaoFirebase.getFirebase();
+                                ConvidadoGincana convidado = new ConvidadoGincana();
+                                convidado.setIdConvidado(identificadorUsuario);
+                                convidado.setEmail(emailConvidado);
+                                convidado.setNomeDaGincana(nomeDaGincana);
+                                convidado.setChaveamento(chaveamento);
+                                convidado.setIdDaGincana(idDaGincana);
+
 
 
 
