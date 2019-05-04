@@ -83,7 +83,7 @@ public class GincanaActivity extends AppCompatActivity {
         }
 
 //toolbar
-        toolbar = findViewById(R.id.toolbar_main);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(nomeDaGincana);
         setSupportActionBar(toolbar);
 
@@ -255,11 +255,11 @@ public class GincanaActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_competicao, menu);
+        inflater.inflate(R.menu.menu, menu);
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
@@ -271,7 +271,7 @@ public class GincanaActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
-    }
+    }*/
 
     public void convidarUsuario(){
         android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(GincanaActivity.this);

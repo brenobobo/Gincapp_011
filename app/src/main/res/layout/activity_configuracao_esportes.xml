@@ -7,7 +7,7 @@
     tools:context=".Activitys.CadastroCompeticaoActivity">
 
     <include
-        android:id="@+id/toolbar_main"
+        android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
 
@@ -18,7 +18,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="384dp"
         android:text="Qual tipo chaveamento você deseja?"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/colorPrimaryText"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -46,7 +46,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="444dp"
         android:text="Nome da Competição:"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/colorPrimaryText"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,8 +103,9 @@
         android:layout_height="72dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorSecondary"
         android:text="Pronto"
+        android:textColor="@color/colorSecondaryText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

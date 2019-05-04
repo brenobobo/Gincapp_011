@@ -14,8 +14,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.UUID;
 
-import br.com.naosai.breno.gincapp_010.Control.Base64Custom;
-import br.com.naosai.breno.gincapp_010.Control.ConfiguracaoFirebase;
 import br.com.naosai.breno.gincapp_010.Control.ControlGincana;
 import br.com.naosai.breno.gincapp_010.Control.ControlUsuario;
 import br.com.naosai.breno.gincapp_010.Entidades.Gincana;
@@ -37,7 +35,7 @@ public class CadastroCompeticaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracao_esportes);
 
-        toolbar = findViewById(R.id.toolbar_main);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Criação da Gincana");
 
         botaoPronto = findViewById(R.id.button_pronto);

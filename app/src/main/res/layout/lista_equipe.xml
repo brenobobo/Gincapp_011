@@ -9,7 +9,7 @@
     android:id="@+id/tv_nome_equipe"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:textColor="@color/textColorToLight"
+    android:textColor="@color/colorPrimaryText"
     android:textSize="20sp"
     android:padding="8dp"
     />
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:text="pontos:"
-        android:textColor="@color/textColorToLight"
+        android:textColor="@color/colorPrimaryText"
         android:textSize="14sp" />
 
 </LinearLayout>
