@@ -22,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import br.com.naosai.breno.gincapp_010.Activitys.GincanaActivity;
-import br.com.naosai.breno.gincapp_010.Activitys.MainActivity;
 import br.com.naosai.breno.gincapp_010.Activitys.SemiFinalActivity;
 import br.com.naosai.breno.gincapp_010.Adapter.GincanaAdapter;
 import br.com.naosai.breno.gincapp_010.Control.ConfiguracaoFirebase;

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activitys.TesteActivity"></activity>
+        <activity android:name=".Activitys.MainActivity"></activity>
+        <activity android:name=".Activitys.TesteActivity" />
         <activity android:name=".Activitys.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activitys.GincanaActivity" />
-        <activity android:name=".Activitys.MainActivity" />
         <activity android:name=".Activitys.CadastroUsuarioActivity" />
         <activity android:name=".Activitys.CadastroCompeticaoActivity" />
         <activity android:name=".Activitys.SemiFinalActivity" />
